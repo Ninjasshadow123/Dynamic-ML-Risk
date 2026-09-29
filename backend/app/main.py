@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import Base, SessionLocal, engine
 from app.models.models import MachineField
-from app.routers import fields, machines
+from app.routers import fields, machines, predictions
 
 
 app = FastAPI(
@@ -102,7 +102,7 @@ seed_initial_fields()
 
 app.include_router(fields.router)
 app.include_router(machines.router)
-
+app.include_router(predictions.router)
 
 @app.get("/health", tags=["Health"])
 def health_check():
